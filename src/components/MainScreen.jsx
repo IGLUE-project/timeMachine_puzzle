@@ -69,9 +69,10 @@ const MainScreen = (props) => {
     let _keypadWidth = Math.min(props.appHeight * aspectRatio, props.appWidth);
     let _keypadHeight = _keypadWidth / aspectRatio;
 
-    let _lockWidth = Math.min(props.appHeight * aspectRatio, props.appWidth) ;
+    let _lockWidth = Math.min(props.appHeight *1.15 , props.appWidth);
     let _lockHeight = _lockWidth / aspectRatio;
 
+    console.log(_lockWidth, props.appWidth, props.appHeight*aspectRatio);
     let _containerWidth = _lockWidth *0.9;
     let _containerHeight = _lockHeight *0.9;
 
