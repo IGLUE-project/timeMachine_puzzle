@@ -15,6 +15,7 @@ export default function App() {
   const solution = useRef(null);
   const [appWidth, setAppWidth] = useState(0);
   const [appHeight, setAppHeight] = useState(0);
+  const [actualPeriod, setActualPeriod] = useState(null); //Time period Loaded
 
   useEffect(() => {
     //Init Escapp client
@@ -134,9 +135,6 @@ export default function App() {
     Utils.log("Restore application state based on escape room state:", erState);
     if (escapp.getAllPuzzlesSolved()) {
       //Puzzle already solved
-      if ((appSettings.actionAfterSolve === "SHOW_MESSAGE") && (screen !== MESSAGE_SCREEN)) {
-        setScreen(MESSAGE_SCREEN);
-      }
     } else {
       //Puzzle not solved. Restore app state based on local storage.
       restoreAppStateFromLocalStorage();
@@ -148,7 +146,6 @@ export default function App() {
       let stateToRestore = Storage.getSetting("state");
       if (stateToRestore) {
         Utils.log("Restore app state", stateToRestore);
-        setScreen(stateToRestore.screen);
         if (typeof stateToRestore.solution === "string") {
           solution.current = stateToRestore.solution;
         }
@@ -215,11 +212,11 @@ export default function App() {
   let screens = [
     {
       id: MAIN_SCREEN,
-      content: <MainScreen appHeight={appHeight} appWidth={appWidth} onKeypadSolved={onKeypadSolved} />
+      content: <MainScreen appHeight={appHeight} appWidth={appWidth} onKeypadSolved={onKeypadSolved} setActualPeriod={setActualPeriod} />
     },
     {
       id: MESSAGE_SCREEN,
-      content: <MessageScreen appHeight={appHeight} appWidth={appWidth} submitPuzzleSolution={submitPuzzleSolution} />
+      content: <MessageScreen appHeight={appHeight} appWidth={appWidth} submitPuzzleSolution={submitPuzzleSolution} actualPeriod={actualPeriod} />
     }
   ];
 

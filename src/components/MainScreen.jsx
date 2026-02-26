@@ -12,7 +12,7 @@ const MainScreen = (props) => {
 
   const [showTimeMachine, setShowTimeMachine] = useState(true);
   const [backgroundImg, setBackgroundImg] = useState(appSettings.background);
-  const [actualPeriod, setActualPeriod] = useState(null);
+
   const [containerWidth, setContainerWidth] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
   const [lightWidth, setLightWidth] = useState(0);
@@ -21,12 +21,10 @@ const MainScreen = (props) => {
   const mapRange = (value, min1, max1, min2, max2) => {
     return min2 + ((value - min1) * (max2 - min2)) / (max1 - min1);
   };
-  const [frequency, setFrequency] = useState(0);
-  const [wavelength, setWavelength] = useState(0);
-  const [amplitude, setAmplitude] = useState(0);
-  const frequencyMapped = mapRange(frequency / 3, 0, 119, appSettings.minFrequency, appSettings.maxFrequency); // Frecuencia entre 0.6 y 4.2
-  const wavelengthMapped = mapRange(wavelength / 3, 0, 119, appSettings.minWavelength, appSettings.maxWavelength); // Wavelength entre 10 y 80
-  const amplitudeMapped = mapRange(amplitude / 3, 0, 119, appSettings.minAmplitude, appSettings.maxAmplitude); // Amplitud entre 25 y 80
+
+  const frequencyMapped = mapRange(0 / 3, 0, 119, appSettings.minFrequency, appSettings.maxFrequency); // Frecuencia entre 0.6 y 4.2
+  const wavelengthMapped = mapRange(0 / 3, 0, 119, appSettings.minWavelength, appSettings.maxWavelength); // Wavelength entre 10 y 80
+  const amplitudeMapped = mapRange(0 / 3, 0, 119, appSettings.minAmplitude, appSettings.maxAmplitude); // Amplitud entre 25 y 80
 
   const [year0, setYear0] = useState(0);
   const [year1, setYear1] = useState(0);
@@ -121,7 +119,7 @@ const MainScreen = (props) => {
   const checkPeriods = () => {
     if (!appSettings.periods || appSettings.periods.length === 0) return;
 
-    let era = textPosition === 0 ? "AC" : "DC";
+    let era = textPosition === 0 ? "AC" : "BC";
     let year = [year0, year1, year2, year3, year4].join('');
     let month = [month0, month1].join('');
     let day = [day0, day1].join('');
@@ -135,7 +133,7 @@ const MainScreen = (props) => {
     for (let period of appSettings.periods) {
       if (!period.from) continue; // Saltamos periodos sin `from` configurado
 
-      let fEra = period.from.era || "DC";
+      let fEra = period.from.era || "BC";
       let fYear = parseInt(period.from.year, 10) || 0;
       let fMonth = parseInt(period.from.month, 10) || 0;
       let fDay = parseInt(period.from.day, 10) || 0;
@@ -189,14 +187,14 @@ const MainScreen = (props) => {
     if (foundPeriod) {
       if (foundPeriod.background) {
         setBackgroundImg(foundPeriod.background);
-        setActualPeriod(foundPeriod);
+        props.setActualPeriod(foundPeriod);
         setShowTimeMachine(foundPeriod.showTimeMachine);
         checkSolution(foundPeriod.name);
       }
     } else {
       // Si no hay periodo configurado o válido, volvemos a la imagen de fondo normal
       setBackgroundImg(appSettings.background);
-      setActualPeriod(null);
+      props.setActualPeriod(null);
       setShowTimeMachine(true);
     }
   };
