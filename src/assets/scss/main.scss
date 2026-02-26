@@ -20,157 +20,161 @@ $font-color: black;
 }
 
 div#screen_main {
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 
 div#keypad {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 div#keypad div.row {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-}
-
-div.boxButton {
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	display: flex;
-	color: white;
-	position: absolute;
-	flex-direction: column;
-    align-items: center;
-    justify-content: center;
-	cursor: pointer;
-}
-
-div.boxButton:active {
-	transform: scale(0.9);
-}
-
-div.retro div.boxButton {
-  transition: transform 0.4s ease;
-}
-
-div.retro div.boxButton:active {
-	transform: scale(0.85);
-}
-
-div.boxButton div {
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	flex-direction: column;
-
-	text-align: center;
-	font-size: 4vmin;
-	position: absolute;
-	font-family: "Consolas", "Roboto", sans-serif;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none; 
-  -moz-user-select: none;
-  -ms-user-select: none; 
-  user-select: none;
-  cursor: pointer; 
-}
-
-div.boxButton div img.symbol {
-  align-self: center;
-	max-height: 55%;
-  max-width: 55%;
-}
-
-div.retro div.boxButton div {
-  padding-top: 0.5px;
-  font-size: 3.5vmin;
-  font-family: 'Retro';
-  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 div.boxLight {
-	position: absolute;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	border: none;
-	outline: none;
-	text-decoration: none;
-	border-image: none;
-	pointer-events: none;
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  border-image: none;
+  pointer-events: none;
 }
-
-div.retro div.boxLight {
-	transition: opacity 2.5s ease, visibility ease 2.5s;
-}
-
 
 ///////
 
-.lockContainer{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	position: absolute;
-	//cursor: pointer;
+.lockContainer {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  //cursor: pointer;
 }
+
 //https://codepen.io/laczi/pen/zYqOjNo
-.timeMachineContainer{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	position: absolute;
-	//cursor: pointer;
-	//animation: 6s infinite ship_movement ease-in-out;
+.timeMachineContainer {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  //cursor: pointer;
+  //animation: 6s infinite ship_movement ease-in-out;
 }
+
 .timeMachineContainer.active {
   animation: machine_movement 8s ease-in-out forwards;
 }
 
-@keyframes machine_movement{
-  0%  { transform: translateX(0vmin) translateY(0vmin) rotateZ(0deg); }  
-  30% { transform: translateX(0vmin) translateY(0vmin) rotateZ(0deg); }  
-  34% { transform: translateX(-1.5vmin) translateY(0.6vmin) rotateZ(-2deg); }
-  38% { transform: translateX(1.8vmin) translateY(-0.8vmin) rotateZ(2.5deg); }
-  42% { transform: translateX(-1.2vmin) translateY(1.2vmin) rotateZ(-3deg); }
-  46% { transform: translateX(2vmin) translateY(-0.5vmin) rotateZ(3.5deg); }
-  50% { transform: translateX(-1.8vmin) translateY(-1.3vmin) rotateZ(-4deg); }
-  54% { transform: translateX(1.6vmin) translateY(1.5vmin) rotateZ(3deg); }
-  58% { transform: translateX(-2.2vmin) translateY(-0.7vmin) rotateZ(-2.5deg); }
-  62% { transform: translateX(1.9vmin) translateY(1.1vmin) rotateZ(2deg); }
-  66% { transform: translateX(-1.5vmin) translateY(-1.4vmin) rotateZ(-2deg); }
-  70% { transform: translateX(1.8vmin) translateY(0.7vmin) rotateZ(1.5deg); }
-  74% { transform: translateX(-1.1vmin) translateY(-1vmin) rotateZ(-1.2deg); }
-  78% { transform: translateX(1.3vmin) translateY(0.9vmin) rotateZ(1deg); }
-  82% { transform: translateX(-0.9vmin) translateY(-0.7vmin) rotateZ(-0.8deg); }
-  86% { transform: translateX(0.7vmin) translateY(0.6vmin) rotateZ(0.5deg); }
-  90% { transform: translateX(-0.6vmin) translateY(-0.4vmin) rotateZ(-0.4deg); }
-  94% { transform: translateX(0.4vmin) translateY(0.3vmin) rotateZ(0.2deg); }
-  97% { transform: translateX(-0.2vmin) translateY(-0.1vmin) rotateZ(-0.1deg); }
-  100% { transform: translateX(0vmin) translateY(0vmin) rotateZ(0deg); }
+.timeMachineContainer.hidden {
+  transform: scale(0) !important;
+  opacity: 0;
 }
 
-.buttonContainer{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	position: absolute;
-	cursor: pointer;
-	transition: transform 0.2s ease, filter 0.2s ease;
+@keyframes machine_movement {
+  0% {
+    transform: translateX(0vmin) translateY(0vmin) rotateZ(0deg);
+  }
+
+  30% {
+    transform: translateX(0vmin) translateY(0vmin) rotateZ(0deg);
+  }
+
+  34% {
+    transform: translateX(-1.5vmin) translateY(0.6vmin) rotateZ(-2deg);
+  }
+
+  38% {
+    transform: translateX(1.8vmin) translateY(-0.8vmin) rotateZ(2.5deg);
+  }
+
+  42% {
+    transform: translateX(-1.2vmin) translateY(1.2vmin) rotateZ(-3deg);
+  }
+
+  46% {
+    transform: translateX(2vmin) translateY(-0.5vmin) rotateZ(3.5deg);
+  }
+
+  50% {
+    transform: translateX(-1.8vmin) translateY(-1.3vmin) rotateZ(-4deg);
+  }
+
+  54% {
+    transform: translateX(1.6vmin) translateY(1.5vmin) rotateZ(3deg);
+  }
+
+  58% {
+    transform: translateX(-2.2vmin) translateY(-0.7vmin) rotateZ(-2.5deg);
+  }
+
+  62% {
+    transform: translateX(1.9vmin) translateY(1.1vmin) rotateZ(2deg);
+  }
+
+  66% {
+    transform: translateX(-1.5vmin) translateY(-1.4vmin) rotateZ(-2deg);
+  }
+
+  70% {
+    transform: translateX(1.8vmin) translateY(0.7vmin) rotateZ(1.5deg);
+  }
+
+  74% {
+    transform: translateX(-1.1vmin) translateY(-1vmin) rotateZ(-1.2deg);
+  }
+
+  78% {
+    transform: translateX(1.3vmin) translateY(0.9vmin) rotateZ(1deg);
+  }
+
+  82% {
+    transform: translateX(-0.9vmin) translateY(-0.7vmin) rotateZ(-0.8deg);
+  }
+
+  86% {
+    transform: translateX(0.7vmin) translateY(0.6vmin) rotateZ(0.5deg);
+  }
+
+  90% {
+    transform: translateX(-0.6vmin) translateY(-0.4vmin) rotateZ(-0.4deg);
+  }
+
+  94% {
+    transform: translateX(0.4vmin) translateY(0.3vmin) rotateZ(0.2deg);
+  }
+
+  97% {
+    transform: translateX(-0.2vmin) translateY(-0.1vmin) rotateZ(-0.1deg);
+  }
+
+  100% {
+    transform: translateX(0vmin) translateY(0vmin) rotateZ(0deg);
+  }
+}
+
+.buttonContainer {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .buttonContainer:hover {
@@ -178,53 +182,58 @@ div.retro div.boxLight {
   transform: scale(1.05);
   filter: brightness(1.3);
 }
+
 .buttonContainer.disabled {
   //transform: translateY(1.1vmin);
   filter: brightness(0.5);
   //cursor: not-allowed;
   cursor: default;
 }
+
 .buttonContainer.disabled:hover {
   transform: none;
   filter: brightness(0.5);
 }
+
 .buttonContainer:active {
   transform: scale(0.9);
   filter: brightness(1);
 }
 
-.switchContainer{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	position: absolute;
-	transition: transform 0.2s ease;
-	//cursor: pointer;
+.switchContainer {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  transition: transform 0.2s ease;
+  //cursor: pointer;
 }
+
 .switchContainer:hover {
   //transform: scale(1.05);
   transform: translateY(-0.5vmin);
   filter: brightness(1.3);
 }
+
 .switchContainer:active {
   transform: translateY(1.1vmin);
   filter: brightness(1);
 }
 
-.screenContainer{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	display: flex;
-	position: absolute;
-	justify-content:center;
-	align-content:center;
-	align-items: center; 	
+.screenContainer {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 
 
-  .flipClock {
+.flipClock {
   /*display: flex;
   justify-content: space-between;
   width: calc(3 * 2rem);*/
@@ -232,8 +241,9 @@ div.retro div.boxLight {
   transition: transform 0.2s ease, filter 0.2s ease;
   display: flex;
 }
+
 .flipClock:hover {
- 
+
   //transform: translateY(-1vmin);
   transform: scale(1.02);
   filter: brightness(1.2);
@@ -254,18 +264,19 @@ div.retro div.boxLight {
   border-radius: 0.2rem;
   box-shadow: 0px 10px 10px -10px grey;
   //padding: 0;
-  
+
 }
 
-.upperCard, .lowerCard {
+.upperCard,
+.lowerCard {
   display: flex;
   //position: relative;
   //justify-content: center;
   //width: 10%;
   //height: auto;
   overflow: hidden;
-  
- // border: 1px solid $border;
+
+  // border: 1px solid $border;
 
   span {
     font-size: $font-size;
@@ -283,27 +294,27 @@ div.retro div.boxLight {
   align-items: flex-end;
   border-bottom: 0.5px solid $border;
   border-top: 0.5px solid $border;
-  border-left:0.5px solid $border;
-  border-right:0.5px solid $border;
+  border-left: 0.5px solid $border;
+  border-right: 0.5px solid $border;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   //border-radius: 0;
 
   span {
     transform: translateY(50%);
-    
+
   }
 }
 
 .lowerCard {
   align-items: flex-start;
   border-top: 0.5px solid $border;
-  border-left:0.5px solid $border;
-  border-right:0.5px solid $border;
+  border-left: 0.5px solid $border;
+  border-right: 0.5px solid $border;
   border-bottom: 0.5px solid $border;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  
+
 
   span {
     transform: translateY(-50%);
@@ -314,7 +325,7 @@ div.retro div.boxLight {
 .flipCard {
   display: flex;
   //justify-content: center;
-  
+
   position: absolute;
   //left: 0;
   width: 100%;
@@ -322,8 +333,8 @@ div.retro div.boxLight {
   //height: 1rem;
   overflow: hidden;
   backface-visibility: hidden;
-  border-left:0.5px solid $border;
-  border-right:0.5px solid $border;
+  border-left: 0.5px solid $border;
+  border-right: 0.5px solid $border;
 
   span {
     font-family: $font-family;
@@ -383,6 +394,7 @@ div.retro div.boxLight {
   0% {
     transform: rotateX(0deg);
   }
+
   100% {
     transform: rotateX(-180deg);
   }
@@ -392,6 +404,7 @@ div.retro div.boxLight {
   0% {
     transform: rotateX(180deg);
   }
+
   100% {
     transform: rotateX(0deg);
   }
@@ -464,12 +477,12 @@ div.retro div.boxLight {
   pointer-events: none;
   z-index: 1;
   display: none;
-  
+
   &.active {
     display: block;
     animation: wormhole-show 8s ease-in-out forwards;
   }
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -478,26 +491,35 @@ div.retro div.boxLight {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      transparent 0%,
-      transparent 0%,
-      rgba(137, 43, 226, 1) 30%,
-      rgba(75, 0, 130, 1) 45%,
-      rgba(25, 25, 112, 1) 50%,
-      rgba(0, 0, 0, 1) 60%,
-      #000000 100%
-    );
+    background: radial-gradient(circle,
+        transparent 0%,
+        transparent 0%,
+        rgba(137, 43, 226, 1) 30%,
+        rgba(75, 0, 130, 1) 45%,
+        rgba(25, 25, 112, 1) 50%,
+        rgba(0, 0, 0, 1) 60%,
+        #000000 100%);
     transform: translate(-50%, -50%);
     animation: wormhole-expand 8s ease-in-out forwards;
   }
 }
 
 @keyframes wormhole-show {
-  0% { opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes wormhole-expand {
@@ -506,25 +528,25 @@ div.retro div.boxLight {
     height: 0;
     transform: translate(-50%, -50%) rotate(0deg);
   }
-  
+
   25% {
     width: 60vmax;
     height: 60vmax;
     transform: translate(-50%, -50%) rotate(90deg);
   }
-  
+
   50% {
     width: 120vmax;
     height: 120vmax;
     transform: translate(-50%, -50%) rotate(180deg);
   }
-  
+
   75% {
     width: 60vmax;
     height: 60vmax;
     transform: translate(-50%, -50%) rotate(270deg);
   }
-  
+
   100% {
     width: 0;
     height: 0;

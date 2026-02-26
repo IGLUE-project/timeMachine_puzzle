@@ -1,9 +1,8 @@
-import React from 'react';
-import {useState, useEffect, useRef, useContext } from 'react';
-import { GlobalContext } from "./GlobalContext";
+import { useContext, useEffect, useRef, useState } from 'react';
 import './../assets/scss/app.scss';
+import { GlobalContext } from "./GlobalContext";
 
-import { DEFAULT_APP_SETTINGS, SKIN_SETTINGS_RETRO, SKIN_SETTINGS_FUTURISTIC, ESCAPP_CLIENT_SETTINGS, MAIN_SCREEN, MESSAGE_SCREEN } from '../constants/constants.jsx';
+import { DEFAULT_APP_SETTINGS, ESCAPP_CLIENT_SETTINGS, MAIN_SCREEN, MESSAGE_SCREEN } from '../constants/constants.jsx';
 import MainScreen from './MainScreen.jsx';
 import MessageScreen from './MessageScreen.jsx';
 
@@ -16,10 +15,10 @@ export default function App() {
   const solution = useRef(null);
   const [appWidth, setAppWidth] = useState(0);
   const [appHeight, setAppHeight] = useState(0);
-  
+
   useEffect(() => {
     //Init Escapp client
-    if(escapp !== null){
+    if (escapp !== null) {
       return;
     }
     //Create the Escapp client instance.
@@ -41,58 +40,23 @@ export default function App() {
     }
   }, []);
 
-  function processAppSettings(_appSettings){
-    if(typeof _appSettings !== "object"){
+  function processAppSettings(_appSettings) {
+    if (typeof _appSettings !== "object") {
       _appSettings = {};
     }
 
-    let skinSettings;
-    switch(_appSettings.skin){
-      case "RETRO":
-        skinSettings = SKIN_SETTINGS_RETRO;
-        break;
-      case "FUTURISTIC":
-        skinSettings = SKIN_SETTINGS_FUTURISTIC;
-        break;
-      default:
-        skinSettings = {};
-    }
-    let DEFAULT_APP_SETTINGS_SKIN = Utils.deepMerge(DEFAULT_APP_SETTINGS, skinSettings);
- 
-     // Merge _appSettings with DEFAULT_APP_SETTINGS_SKIN to obtain final app settings
-    _appSettings = Utils.deepMerge(DEFAULT_APP_SETTINGS_SKIN, _appSettings);
-    
-    const allowedActions = ["NONE", "SHOW_MESSAGE"];
-    if(!allowedActions.includes(_appSettings.actionAfterSolve)) {
-      _appSettings.actionAfterSolve = DEFAULT_APP_SETTINGS.actionAfterSolve;
-    }
+    // Merge _appSettings with DEFAULT_APP_SETTINGS_SKIN to obtain final app settings
+    _appSettings = Utils.deepMerge(DEFAULT_APP_SETTINGS, _appSettings);
 
-    switch(_appSettings.keysType){
-      case "LETTERS":
-        _appSettings.keys = _appSettings.letters;
-        _appSettings.backgroundKeys = new Array(12).fill(_appSettings.backgroundKey);
-        break;
-      case "COLORS":
-        _appSettings.keys = _appSettings.colors;
-        _appSettings.backgroundKeys = _appSettings.coloredBackgroundKeys;
-        break;
-      case "SYMBOLS":
-        _appSettings.keys = _appSettings.symbols;
-        if((_appSettings.skin === "FUTURISTIC")&&(_appSettings.backgroundKey === "images/background_key_futuristic.png")){
-          _appSettings.backgroundKey = "images/background_key_futuristic_black.png";
-        }
-        _appSettings.backgroundKeys = new Array(12).fill(_appSettings.backgroundKey);
-        break;
-      default:
-        //NUMBERS
-        _appSettings.keys = _appSettings.numbers;
-        _appSettings.backgroundKeys = new Array(12).fill(_appSettings.backgroundKey);
+    const allowedActions = ["NONE", "SHOW_MESSAGE"];
+    if (!allowedActions.includes(_appSettings.actionAfterSolve)) {
+      _appSettings.actionAfterSolve = DEFAULT_APP_SETTINGS.actionAfterSolve;
     }
 
     //Init internacionalization module
     I18n.init(_appSettings);
 
-    if(typeof _appSettings.message !== "string"){
+    if (typeof _appSettings.message !== "string") {
       _appSettings.message = I18n.getTrans("i.message");
     }
 
@@ -112,22 +76,22 @@ export default function App() {
       hasExecutedEscappValidation.current = true;
 
       //Register callbacks in Escapp client and validate user.
-      escapp.registerCallback("onNewErStateCallback", function(erState){
+      escapp.registerCallback("onNewErStateCallback", function (erState) {
         try {
           Utils.log("New escape room state received from ESCAPP", erState);
           restoreAppState(erState);
-        } catch (e){
+        } catch (e) {
           Utils.log("Error in onNewErStateCallback", e);
         }
       });
 
-      escapp.registerCallback("onErRestartCallback", function(erState){
+      escapp.registerCallback("onErRestartCallback", function (erState) {
         try {
           Utils.log("Escape Room has been restarted.", erState);
-          if(typeof Storage !== "undefined"){
+          if (typeof Storage !== "undefined") {
             Storage.removeSetting("state");
           }
-        } catch (e){
+        } catch (e) {
           Utils.log("Error in onErRestartCallback", e);
         }
       });
@@ -136,11 +100,11 @@ export default function App() {
       escapp.validate((success, erState) => {
         try {
           Utils.log("ESCAPP validation", success, erState);
-          if(success){
+          if (success) {
             restoreAppState(erState);
             setLoading(false);
           }
-        } catch (e){
+        } catch (e) {
           Utils.log("Error in validate callback", e);
         }
       });
@@ -148,7 +112,7 @@ export default function App() {
   }, [escapp, appSettings, Storage]);
 
   useEffect(() => {
-    if(loading === false){
+    if (loading === false) {
       handleResize();
     }
   }, [loading]);
@@ -161,16 +125,16 @@ export default function App() {
     }
   }, [screen]);
 
-  function handleResize(){
+  function handleResize() {
     setAppWidth(window.innerWidth);
     setAppHeight(window.innerHeight);
   }
 
-  function restoreAppState(erState){
+  function restoreAppState(erState) {
     Utils.log("Restore application state based on escape room state:", erState);
-    if (escapp.getAllPuzzlesSolved()){
+    if (escapp.getAllPuzzlesSolved()) {
       //Puzzle already solved
-      if((appSettings.actionAfterSolve === "SHOW_MESSAGE")&&(screen !== MESSAGE_SCREEN)){
+      if ((appSettings.actionAfterSolve === "SHOW_MESSAGE") && (screen !== MESSAGE_SCREEN)) {
         setScreen(MESSAGE_SCREEN);
       }
     } else {
@@ -179,38 +143,38 @@ export default function App() {
     }
   }
 
-  function restoreAppStateFromLocalStorage(){
-    if(typeof Storage !== "undefined"){
+  function restoreAppStateFromLocalStorage() {
+    if (typeof Storage !== "undefined") {
       let stateToRestore = Storage.getSetting("state");
-      if(stateToRestore){
+      if (stateToRestore) {
         Utils.log("Restore app state", stateToRestore);
         setScreen(stateToRestore.screen);
-        if(typeof stateToRestore.solution === "string"){
+        if (typeof stateToRestore.solution === "string") {
           solution.current = stateToRestore.solution;
         }
       }
     }
   }
 
-  function saveAppState(){
-    if(typeof Storage !== "undefined"){
-      let currentAppState = {screen: screen};
-      if(screen === MESSAGE_SCREEN){
+  function saveAppState() {
+    if (typeof Storage !== "undefined") {
+      let currentAppState = { screen: screen };
+      if (screen === MESSAGE_SCREEN) {
         currentAppState.solution = solution.current;
       }
       Utils.log("Save app state in local storage", currentAppState);
-      Storage.saveSetting("state",currentAppState);
+      Storage.saveSetting("state", currentAppState);
     }
   }
 
-  function onKeypadSolved(_solution){
+  function onKeypadSolved(_solution) {
     Utils.log("onKeypadSolved with solution:", _solution);
-    if(typeof _solution !== "string"){
+    if (typeof _solution !== "string") {
       return;
     }
     solution.current = _solution;
 
-    switch(appSettings.actionAfterSolve){
+    switch (appSettings.actionAfterSolve) {
       case "SHOW_MESSAGE":
         return setScreen(MESSAGE_SCREEN);
       case "NONE":
@@ -219,11 +183,11 @@ export default function App() {
     }
   }
 
-  function submitPuzzleSolution(){
+  function submitPuzzleSolution() {
     Utils.log("Submit puzzle solution", solution.current);
 
     escapp.submitNextPuzzle(solution.current, {}, (success, erState) => {
-      if(!success){
+      if (!success) {
         setScreen(MAIN_SCREEN);
       }
       Utils.log("Solution submitted to Escapp", solution.current, success, erState);

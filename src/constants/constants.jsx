@@ -2,11 +2,11 @@ export const DEFAULT_APP_SETTINGS = {
   skin: "STANDARD",
   actionAfterSolve: "NONE",
   message: undefined,
-  keysType: "NUMBERS",
+  background: "images/standard/background_before.png",
   backgroundBefore: "images/standard/background_before.png",
   backgroundAfter: "images/standard/background_after.png",
-  backgroundTimeMachine : "images/standard/background_time_machine_new.png",
-  backgroundTimeMachineFull : "images/standard/background_time_machine_full.png",
+  backgroundTimeMachine: "images/standard/background_time_machine_new.png",
+  backgroundTimeMachineFull: "images/standard/background_time_machine_full.png",
   switchImage: "images/standard/switch.png",
   buttonBackground: "images/standard/button_background.png",
   acbcBackground: "images/standard/acbc_background.png",
@@ -16,10 +16,6 @@ export const DEFAULT_APP_SETTINGS = {
 
   fullTimeMachine: false, // Para controlar si se muestra el fondo completo del Time Machine
 
-  //backgroundDial: "images/standard/dial.png",
-  //modeButton: "images/standard/mode_button.png",
-  //backgroundNok: "images/standard/background_nok.png",
-  //backgroundOk: "images/standard/background_ok.png",
   backgroundButton: "images/standard/button.png",
   backgroundMessage: "images/background_message.png",
   imageLightOff: "images/standard/light_off.png",
@@ -30,13 +26,6 @@ export const DEFAULT_APP_SETTINGS = {
   soundNok: "sounds/solution_nok.mp3",
   soundOk: "sounds/solution_ok.mp3",
   soundSwitch: "sounds/switch_sound.mp3",
-
- 
-
-  dialWidth: 0.7, // Relative size of the dial compared to the box width
-  dialHeight: 0.7, // Relative size of the dial compared to the box height
-  dialTextSize: "2.5vmin", // Font size for the dial text
-  dialTextColor: "#000000", // Color for the dial text
 
 
   rayWidth: 0.59, // Relative width of the ray compared to the box width
@@ -60,47 +49,8 @@ export const DEFAULT_APP_SETTINGS = {
   maxWavelength: 80, // Maximum wavelength for the ray
 };
 
-export const SKIN_SETTINGS_RETRO = {
-  background: "images/retro/background.png",
-  backgroundKeypad: "images/background_keypad_retro.png",
-  backgroundKey: "images/background_key_retro.png",
-  
-  backgroundLock : "images/retro/background_lock_retro.png",
-  backgroundDial: "images/retro/dial_retro.png",
-  backgroundMessage: "images/background_message_retro.png",
-  imageLightOff: "images/retro/light_off_retro.png",
-  imageLightNok: "images/retro/light_nok_retro.png",
-  imageLightOk: "images/retro/light_ok_retro.png",
-  soundBeep: "sounds/beep_retro.wav",
-  soundNok: "sounds/solution_nok_retro.wav",
-  soundOk: "sounds/solution_ok_retro.wav",
-
-  dialTextSize: "9vmin", // Font size for the dial text
-  dialTextColor: "#FFFFFF", // Color for the dial text
-  lightBack: "false"
-
-};
-
-export const SKIN_SETTINGS_FUTURISTIC = {
-  background: "images/futuristic/background_futuristic.png",
-  backgroundKeypad: "images/background_keypad_futuristic.png",
-  backgroundKey: "images/background_key_futuristic.png",
-  
-  backgroundLock : "images/futuristic/background_lock_futuristic.png",
-  backgroundDial: "images/futuristic/dial_futuristic.png",
-  backgroundMessage: "images/background_message_futuristic.png",
-  imageLightOff: "images/futuristic/light_off_futuristic.png",
-  imageLightNok: "images/futuristic/light_nok_futuristic.png",
-  imageLightOk: "images/futuristic/light_ok_futuristic.png",
-  soundNok: "sounds/solution_nok_futuristic.wav",
-
-  dialTextSize: "9vmin", // Font size for the dial text
-  dialTextColor: "#0fbdfd", // Color for the dial text
-  lightBack:"true", //Para controlar si se muestra la imagen tras el marco del dial
-};
-
 export const ESCAPP_CLIENT_SETTINGS = {
-  imagesPath:"./images/",
+  imagesPath: "./images/",
 };
 
 export const MAIN_SCREEN = "MAIN_SCREEN";
