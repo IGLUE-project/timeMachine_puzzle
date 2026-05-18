@@ -207,7 +207,7 @@ const MainScreen = (props) => {
         setLight("off");
         setProcessingSolution(false);
       }else{
-          //props.onKeypadSolved(solution); //CAMBIAR
+          props.onKeypadSolved(solution); 
       }
     }, afterChangeBoxLightDelay);
     audio.play();
