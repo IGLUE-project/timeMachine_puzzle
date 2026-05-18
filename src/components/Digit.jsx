@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { use } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from "./GlobalContext";
 
 const AnimatedCard = (props) => {
   return(
     <div className={`flipCard ${props.animation}`} onClick={props.onClick} style={{backgroundColor: props.style.color, borderColor:props.style.borderColor, width:"100%"}}>
-      <span style={{color:"black", fontSize: props.style.fontSize}}>{props.digit}</span>
+      <span style={{color:"black", fontSize: props.fontSize}}>{props.digit}</span>
     </div>
   )
 };
@@ -12,18 +12,20 @@ const AnimatedCard = (props) => {
 // function component
 const StaticCard = (props) => (
   <div style={{borderColor:props.borderColor, width:"100%"}} className={props.position}>
-    <span style={{color:"black", fontSize: props.style?.fontSize}}>{props.digit}</span>
+    <span style={{color:"black", fontSize: props.fontSize}}>{props.digit}</span>
   </div>
 );
 
 const Digit = (props) => {	
     const [shuffle, setShuffle] = useState(false);
+    const {appSettings } = useContext(GlobalContext);
     let max = props.max; 
         if(props.name==='month1' &&  props.digit0=== 1) max = 2
         else if(props.name==='day1' && props.digit0=== 3) max = 1
         else max=props.max;
     
     const handleIncrement = () => {
+        if(props.checking) return;
         props.digitOnClick();
 
         if(props.name==='month1' &&  props.digit0=== 1) max = 2
@@ -75,11 +77,11 @@ const Digit = (props) => {
 
   return (
     <div className="flipClock" onClick={handleIncrement} >
-        <div className={'flipUnitContainer'} style={{width: props.style.boxWidth, height: props.style.boxHeight, backgroundColor: props.style.color, borderColor: props.style.borderColor}}>
-        <StaticCard position={'upperCard'} digit={props.digit} borderColor={props.style.borderColor} style={props.style}/>
-        <StaticCard position={'lowerCard'} digit={previousDigit} borderColor={props.style.borderColor} style={props.style}/>
-        <AnimatedCard digit={digit1} animation={animation1}  style={props.style}/>
-        <AnimatedCard digit={digit2} animation={animation2} style={props.style}/>
+        <div className={'flipUnitContainer'} style={{width: props.width*appSettings.digitWidth+'px', height: props.height*appSettings.digitHeight+'px', backgroundColor: props.style.color, borderColor: props.style.borderColor}}>
+        <StaticCard position={'upperCard'} digit={props.digit} borderColor={props.style.borderColor} style={props.style} fontSize={props.height*appSettings.digitFontSize+"px"}/>
+        <StaticCard position={'lowerCard'} digit={previousDigit} borderColor={props.style.borderColor} style={props.style} fontSize={props.height*appSettings.digitFontSize+"px"}/>
+        <AnimatedCard digit={digit1} animation={animation1}  style={props.style} fontSize={props.height*appSettings.digitFontSize+"px"}/>
+        <AnimatedCard digit={digit2} animation={animation2} style={props.style} fontSize={props.height*appSettings.digitFontSize+"px"}/>
         </div>
     </div>
   );

@@ -2,19 +2,15 @@ export const DEFAULT_APP_SETTINGS = {
   skin: "STANDARD",
   actionAfterSolve: "NONE",
   message: undefined,
-  background: "images/standard/background_before.png",
   backgroundBefore: "images/standard/background_before.png",
   backgroundAfter: "images/standard/background_after.png",
-  backgroundTimeMachine: "images/standard/background_time_machine_new.png",
-  backgroundTimeMachineFull: "images/standard/background_time_machine_full.png",
+  backgroundTimeMachine : "images/standard/background_time_machine.png",
   switchImage: "images/standard/switch.png",
   buttonBackground: "images/standard/button_background.png",
   acbcBackground: "images/standard/acbc_background.png",
   backgroundHour: "images/standard/background_hour.png",
   backgroundMinute: "images/standard/background_minute.png",
   backgroundSecond: "images/standard/background_second.png",
-
-  fullTimeMachine: false, // Para controlar si se muestra el fondo completo del Time Machine
 
   backgroundButton: "images/standard/button.png",
   backgroundMessage: "images/background_message.png",
@@ -26,6 +22,19 @@ export const DEFAULT_APP_SETTINGS = {
   soundNok: "sounds/solution_nok.mp3",
   soundOk: "sounds/solution_ok.mp3",
   soundSwitch: "sounds/switch_sound.mp3",
+  soundButtonPress: "sounds/button_press.mp3",
+  soundTimePassing: "sounds/time_passing.mp3",
+
+  fullTimeMachine: false, // Para controlar si se muestra el fondo completo del Time Machine
+
+
+
+  digitWidth: 0.035,
+  digitHeight: 0.07,
+  digitFontSize: 0.08,
+
+  signFontSize: 0.028,
+  
 
 
   rayWidth: 0.59, // Relative width of the ray compared to the box width

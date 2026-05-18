@@ -49,12 +49,22 @@ const Ray = (props) => {
     };
 
     const drawWave = (ctx, width, height) => {
+        const outerColor =
+            propsRef.current.rayOuterColor ??
+            propsRef.current.rayColorOuter ??
+            "rgb(209, 248, 209)";
+        const innerColor =
+            propsRef.current.rayInnerColor ??
+            propsRef.current.rayColorInner ??
+            "rgb(21, 255, 0)";
+        const highlightColor = propsRef.current.rayHighlightColor ?? "rgba(255, 255, 255, 0.52)";
+
         const gradient = ctx.createLinearGradient(0, 0, 0, height);
-        gradient.addColorStop(0, "rgb(209, 248, 209)");
-        gradient.addColorStop(0.5, "rgb(21, 255, 0)");
-        gradient.addColorStop(1, "rgb(209, 248, 209)");
+        gradient.addColorStop(0, outerColor);
+        gradient.addColorStop(0.5, innerColor);
+        gradient.addColorStop(1, outerColor);
         drawLine(ctx, width, height, 6, gradient);
-        drawLine(ctx, width, height, 3, "rgba(255, 255, 255, 0.52)");
+        drawLine(ctx, width, height, 3, highlightColor);
     };
 
     const draw = () => {
